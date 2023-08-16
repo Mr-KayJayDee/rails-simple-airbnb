@@ -1,0 +1,25 @@
+<!-- app/views/flats/_form.html.erb -->
+<%= simple_form_for(flat, html: { class: 'form-horizontal' }) do |form| %>
+  <% if flat.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(flat.errors.count, "error") %> prohibited this flat from being saved:</h2>
+      <ul>
+        <% flat.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form.input :name %>
+  <%= form.input :address %>
+  <%= form.input :description, as: :text %>
+  <%= form.input :price_per_night, input_html: { step: '0.01' } %>
+  <%= form.input :number_of_guests, input_html: { step: '1' } %>
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= form.button :submit, class: 'btn btn-primary' %>
+    </div>
+  </div>
+<% end %>
